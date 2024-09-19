@@ -18,14 +18,13 @@ public class Validator {
                     }
                 } else {
                     throw new IllegalStateException(
-                            "@PhoneNumber should only be applied to String fields.");
+                            "@PhoneNumber is only applicable String fields.");
                 }
             }
         }
     }
 
     private static boolean isValidPhoneNumber(String phoneNumber) {
-        // Implement phone number validation logic, e.g., using regex
         return phoneNumber != null && phoneNumber.matches("\\+?[0-9]{10,15}");
     }
 }
