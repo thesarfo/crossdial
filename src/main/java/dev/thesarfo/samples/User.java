@@ -1,21 +1,13 @@
-package dev.thesarfo;
+package dev.thesarfo.samples;
 
-
-
-import dev.thesarfo.annotations.Validate;
-import dev.thesarfo.validators.AgeValidator;
-import dev.thesarfo.validators.PhoneNumberValidator;
+import dev.thesarfo.annotations.PhoneNumber;
 
 public class User {
 
-    @Validate(validator = PhoneNumberValidator.class, message = "Invalid phone number format.")
+    @PhoneNumber
     private String phoneNumber;
 
-    @Validate(validator = AgeValidator.class, message = "Age must be between 18 and 120.")
-    private int age;
-
-    public User(String phoneNumber, int age) {
+    public User(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        this.age = age;
     }
 }
