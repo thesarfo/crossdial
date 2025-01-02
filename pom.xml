@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.thesarfo</groupId>
-    <artifactId>inspectra</artifactId>
+    <artifactId>doomsday</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>inspectra</name>
+    <name>doomsday</name>
     <url>http://maven.apache.org</url>
 
     <properties>
