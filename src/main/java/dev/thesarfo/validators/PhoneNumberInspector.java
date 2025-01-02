@@ -1,21 +1,16 @@
 package dev.thesarfo.validators;
 
-import dev.thesarfo.annotations.PhoneNumber;
-
-import java.lang.reflect.Field;
-
-
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
-public class PhoneNumberValidator implements Validator<String> {
+public class PhoneNumberInspector implements Inspector<String> {
 
     @Override
     public boolean isValid(String value) {
         if (value == null || value.isEmpty()) return false;
         PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
         try {
-            phoneNumberUtil.parse(value, ""); // "" for generic region
+            phoneNumberUtil.parse(value, "");
             return true;
         } catch (NumberParseException e) {
             return false;
