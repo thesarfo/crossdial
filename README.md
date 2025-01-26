@@ -2,6 +2,11 @@
 
 CrossDial is a lightweight Java library for validating and formatting international phone numbers. It provides an easy-to-use interface for phone number validation with full error handling and batch support.
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Maven](https://img.shields.io/maven-central/v/io.github.thesarfo/crossdial?label=Maven%20Central)
+
+### What it does:
+
 ### What it does:
 
 - Single phone number validation
@@ -24,6 +29,14 @@ Add this to your `pom.xml`:
     <artifactId>crossdial</artifactId>
     <version>1.0.0</version>
 </dependency>
+```
+
+### Gradle
+
+Add this to your `build.gradle`:
+
+```gradle
+implementation group: 'io.github.thesarfo', name: 'crossdial', version: '1.0.0'
 ```
 
 ---
@@ -149,6 +162,5 @@ public class PhoneValidationService {
 
 This project is meant to fit a specific use case, but contributions are welcome. Feel free to open an issue or submit a pull request, or you can fork and build your own version
 
-### License
-
-MIT License. See the LICENSE file for details.
+### Acknowledgements
+This project was built on top of Google's [libphonenumber](https://github.com/google/libphonenumber).
