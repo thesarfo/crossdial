@@ -1,27 +1,45 @@
-## CrossDial: Phone Number Validator
+# CrossDial: Phone Number Validator
 
-CrossDial is a lightweight Java library for validating and formatting international phone numbers. It provides an easy-to-use interface for phone number validation with full error handling and batch support.
+CrossDial is a library for validating and formatting international phone numbers. It provides an easy-to-use interface for phone number validation with full error handling and batch support.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Maven](https://img.shields.io/maven-central/v/io.github.thesarfo/crossdial?label=Maven%20Central)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)  ![Maven](https://img.shields.io/maven-central/v/io.github.thesarfo/crossdial?label=Maven%20Central)
 
-### What it does:
+## Table of Contents
+1. [What it Does](#what-it-does)
+2. [Getting Started](#getting-started)
+3. [Usage](#usage)
+   - [Validate a Single Phone Number](#validate-a-single-phone-number)
+   - [Validate Multiple Numbers (Batch Validation)](#validate-multiple-numbers-batch-validation)
+   - [List Supported Countries](#list-supported-countries)
+4. [Understanding Validation Results](#understanding-validation-results)
+5. [Common Error Types](#common-error-types)
+6. [Best Practices](#best-practices)
+7. [Examples](#examples)
+   - [Valid Number Formats](#valid-number-formats)
+   - [Error Handling Example](#error-handling-example)
+8. [Thread Safety](#thread-safety)
+9. [Contributing](#contributing)
+10. [Acknowledgements](#acknowledgements)
 
-### What it does:
+---
 
-- Single phone number validation
-- Batch validation support
-- E.164 international phone number formatting
-- Detailed error reporting
-- Country code validation
-- Thread-safe operations
-- No runtime exceptions—errors are handled via `ValidationResult`
+## What it Does
 
-## Installation
+- **Phone Number Validation**: Validates individual phone numbers.
+- **Batch Validation**: Supports validating multiple phone numbers at once.
+- **Phone Number Formatting**: Formats phone numbers according to the E.164 standard.
+- **Detailed Error Reporting**: Provides clear error messages for invalid numbers.
+- **Country Code Validation**: Ensures the country code matches the phone number format.
+- **Thread-Safe**: Designed to be thread-safe for use in multi-threaded environments.
+- **Error Handling**: Handles errors using `ValidationResult`—no runtime exceptions.
 
-### Maven
+---
 
-Add this to your `pom.xml`:
+## Getting Started
+
+#### Maven
+
+Add the following dependency to your `pom.xml`:
 
 ```xml
 <dependency>
@@ -31,9 +49,9 @@ Add this to your `pom.xml`:
 </dependency>
 ```
 
-### Gradle
+#### Gradle
 
-Add this to your `build.gradle`:
+Add this line to your `build.gradle`:
 
 ```gradle
 implementation group: 'io.github.thesarfo', name: 'crossdial', version: '1.0.0'
@@ -43,10 +61,11 @@ implementation group: 'io.github.thesarfo', name: 'crossdial', version: '1.0.0'
 
 ## Usage
 
-#### Basic Validation
+### Validate a Single Phone Number
 
 ```java
 PhoneNumberValidator validator = new PhoneNumberValidator();
+
 ValidationResult result = validator.validateNumber("+233244444444", "GH");
 
 if (result.isValid()) {
@@ -56,7 +75,7 @@ if (result.isValid()) {
 }
 ```
 
-#### Batch Validation
+### Validate Multiple Numbers (Batch Validation)
 
 ```java
 List<PhoneNumberRequest> numbers = Arrays.asList(
@@ -75,7 +94,7 @@ results.forEach(r -> {
 });
 ```
 
-#### Get Supported Countries
+### List Supported Countries
 
 ```java
 List<CountryCode> countries = validator.getSupportedCountries();
@@ -86,18 +105,20 @@ countries.forEach(c ->
 
 ---
 
-### Validation Results
+## Understanding Validation Results
 
-The `ValidationResult` object contains:
+When you validate a phone number, you receive a `ValidationResult` object. Here's how to use it:
 
-- `isValid()`: Whether the number is valid
-- `getFormattedNumber()`: The phone number in E.164 format
-- `getOriginalNumber()`: The input phone number
-- `getError()`: The error message (if invalid)
+- `isValid()`: Returns `true` if the phone number is valid.
+- `getFormattedNumber()`: Returns the phone number formatted according to the E.164 standard.
+- `getOriginalNumber()`: The phone number that was originally provided.
+- `getError()`: If the number is invalid, this contains the error message.
 
 ---
 
-### Error Types
+## Common Error Types
+
+The possible validation errors are encapsulated in an enum:
 
 ```java
 public enum ValidationError {
@@ -112,14 +133,14 @@ public enum ValidationError {
 
 ---
 
-### Best Practices
+## Best Practices
 
-- **Country Codes**: Use ISO 3166-1 alpha-2 country codes (e.g., "US", "GB", "GH").
-- **Phone Numbers**: Can include or exclude the '+' prefix, spaces, or dashes.
+- **Country Codes**: Always use ISO 3166-1 alpha-2 country codes (e.g., "US", "GB", "GH").
+- **Phone Numbers**: Numbers can include or exclude the '+' prefix, spaces, or dashes as necessary. The library will clean up the formatting.
 
 ---
 
-### Examples
+## Examples
 
 ### Valid Number Formats
 
@@ -128,7 +149,8 @@ validator.validateNumber("+1234567890", "US");
 validator.validateNumber("123-456-7890", "US");
 ```
 
-### Error Handling
+
+### Error Handling Example
 
 ```java
 ValidationResult result = validator.validateNumber("123", "US");
@@ -143,24 +165,27 @@ if (!result.isValid()) {
 
 ---
 
-### Thread Safety
+## Thread Safety
 
-The validator is thread-safe and can be used as a singleton:
+CrossDial is thread-safe, so you can use it safely across multiple threads or as a singleton in your applications:
 
 ```java
 @Service
 public class PhoneValidationService {
     private final PhoneNumberValidator validator = new PhoneNumberValidator();
     
-    // Use the validator in your methods
+    // Use the validator in your service methods
 }
 ```
 
 ---
 
-### Contributing
+## Contributing
 
-This project is meant to fit a specific use case, but contributions are welcome. Feel free to open an issue or submit a pull request, or you can fork and build your own version
+This project is meant to fit a very specific use case, but contributions are welcome. Feel free to open an issue or submit a pull request, or you can fork and build your own version
 
-### Acknowledgements
-This project was built on top of Google's [libphonenumber](https://github.com/google/libphonenumber).
+---
+
+## Acknowledgements
+
+This project was built on top of [Google's libphonenumber](https://github.com/google/libphonenumber).
